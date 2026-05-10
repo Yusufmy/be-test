@@ -24,6 +24,24 @@ class ItemPenjualanController extends Controller
         ], 200);
     }
 
+    public function getByNota(String $nota)
+    {
+        $data = ItemPenjualan::where('NOTA', $nota)->get();
+
+        if ($data->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data item penjualan tidak ditemukan untuk NOTA: ' . $nota,
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data item penjualan berhasil diambil untuk NOTA: ' . $nota,
+            'data' => $data
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

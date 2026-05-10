@@ -29,9 +29,10 @@ Route::get('/penjualan/{id}', [PenjualanController::class, 'show']);
 Route::patch('/penjualan/{id}', [PenjualanController::class, 'update']);
 Route::delete('/penjualan/{id}', [PenjualanController::class, 'destroy']);
 
-/// PENJUALAN
+/// ITEM PENJUALAN
 Route::post('/item-penjualan', [ItemPenjualanController::class, 'store']);
 Route::get('/item-penjualan', [ItemPenjualanController::class, 'index']);
+Route::get('/item-penjualan/{nota}', [ItemPenjualanController::class, 'getByNota']);
 Route::get('/item-penjualan/{id}', [ItemPenjualanController::class, 'show']);
 Route::patch('/item-penjualan/{id}', [ItemPenjualanController::class, 'update']);
 Route::delete('/item-penjualan/{id}', [ItemPenjualanController::class, 'destroy']);
