@@ -26,7 +26,9 @@ class ItemPenjualanController extends Controller
 
     public function getByNota(String $nota)
     {
-        $data = ItemPenjualan::where('NOTA', $nota)->get();
+        $data = ItemPenjualan::with('barang')
+            ->where('NOTA', $nota)
+            ->get();
 
         if ($data->isEmpty()) {
             return response()->json([

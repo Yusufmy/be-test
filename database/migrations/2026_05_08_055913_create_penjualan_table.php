@@ -19,7 +19,8 @@ return new class extends Migration
 
             $table->foreign('KODE_PELANGGAN')
                 ->references('ID_PELANGGAN')
-                ->on('pelanggan');
+                ->on('pelanggan')
+                ->cascadeOnDelete();
         });
     }
 
