@@ -14,7 +14,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data = Barang::all();
+        $data = Barang::orderByRaw("
+            CAST(SUBSTRING_INDEX(KODE, '_', -1) AS UNSIGNED)
+        ")->get();
 
         return response()->json([
             'success' => true,

@@ -14,7 +14,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $data = Pelanggan::all();
+        $data = Pelanggan::orderByRaw("
+            CAST(SUBSTRING_INDEX(ID_PELANGGAN, '_', -1) AS UNSIGNED)
+        ")->get();
 
         return response()->json([
             'success' => true,

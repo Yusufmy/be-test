@@ -17,7 +17,11 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $data = Penjualan::all();
+        $data = Penjualan::with('pelanggan')
+            ->orderByRaw("
+            CAST(SUBSTRING_INDEX(ID_NOTA, '_', -1) AS UNSIGNED)
+        ")
+            ->get();
 
         return response()->json([
             'success' => true,
@@ -25,7 +29,6 @@ class PenjualanController extends Controller
             'data' => $data
         ], 200);
     }
-
     /**
      * POST /api/penjualan
      */
@@ -216,7 +219,6 @@ class PenjualanController extends Controller
                 'success' => true,
                 'message' => 'Data penjualan berhasil dihapus',
             ], 200);
-
         } catch (\Exception $e) {
             DB::rollBack();
 
